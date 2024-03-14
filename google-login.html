@@ -10,19 +10,38 @@
 <body>
 <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
 <script>
-    function onSignIn(googleUser) {
-        // 사용자 로그인 정보 가져오기
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // 사용자 고유 ID
-        console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
+    /*
+     * Create form to request access token from Google's OAuth 2.0 server.
+     */
+    function oauthSignIn() {
+        // Google's OAuth 2.0 endpoint for requesting an access token
+        var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
 
-        // ID 토큰 가져오기: 서버로 보낼 수 있음
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log('ID Token: ' + id_token);
+        // Create <form> element to submit parameters to OAuth 2.0 endpoint.
+        var form = document.createElement('form');
+        form.setAttribute('method', 'GET'); // Send as a GET request.
+        form.setAttribute('action', oauth2Endpoint);
+
+        // Parameters to pass to OAuth 2.0 endpoint.
+        var params = {'client_id': '912679760648-js1bj1ig7bobd39cfv0gjct19sbqvoh6.apps.googleusercontent.com',
+            'redirect_uri': 'https://ho9036.github.io/return-by-google',
+            'response_type': 'token',
+            'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly',
+            'include_granted_scopes': 'true',
+            'state': 'pass-through value'};
+
+        // Add form parameters as hidden input values.
+        for (var p in params) {
+            var input = document.createElement('input');
+            input.setAttribute('type', 'hidden');
+            input.setAttribute('name', p);
+            input.setAttribute('value', params[p]);
+            form.appendChild(input);
+        }
+
+        // Add form to page and submit it to open the OAuth 2.0 endpoint.
+        document.body.appendChild(form);
+        form.submit();
     }
 </script>
 </body>
