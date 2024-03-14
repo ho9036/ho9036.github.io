@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="912679760648-js1bj1ig7bobd39cfv0gjct19sbqvoh6.apps.googleusercontent.com">
+</head>
+<body>
+<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+<script>
+    function onSignIn(googleUser) {
+        // 사용자 로그인 정보 가져오기
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // 사용자 고유 ID
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail());
+
+        // ID 토큰 가져오기: 서버로 보낼 수 있음
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log('ID Token: ' + id_token);
+    }
+</script>
+</body>
+</html>
