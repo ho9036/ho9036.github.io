@@ -6,15 +6,24 @@
     <script src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
 </head>
 <body>
-<div id="appleid-signin" data-color="black" data-border="true" data-type="sign in"></div>
+<button onclick="auth()">버튼</button>
 <script>
-    AppleID.auth.init({
-        clientId : 'io.pay.stake', // 서비스 ID
-        scope : 'name email',
-        redirectURI : 'https://munaap.kro.kr/privacy/', // 리디렉션 URI
-        state : 'state',
-        usePopup : true // 팝업 사용 여부
-    });
+    async function auth() {
+        AppleID.auth.init({
+            clientId : 'io.pay.stake', // 서비스 ID
+            scope : 'name email',
+            redirectURI : 'https://ho9036.github.io/return-by-apple.html', // 리디렉션 URI
+            state : 'state',
+            usePopup : true // 팝업 사용 여부
+        });
+
+        try {
+            const res = await window.AppleID.auth.signIn();
+            console.log(res);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 </script>
 </body>
 </html>
