@@ -6,17 +6,17 @@
     <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin-allow-popups"/>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="912679760648-js1bj1ig7bobd39cfv0gjct19sbqvoh6.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content=".apps.googleusercontent.com">
 </head>
 <body>
-<div class="g-signin2" data-onsuccess="oauthSignIn"></div>
+<button onclick="go()">로그인</button>
 <script>
-    /*
-     * Create form to request access token from Google's OAuth 2.0 server.
-     */
-    function oauthSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log(profile);
+    function go(){
+        window.location.href ="https://accounts.google.com/o/oauth2/auth?" +
+            "client_id=912679760648-js1bj1ig7bobd39cfv0gjct19sbqvoh6&"+
+            "redirect_uri=https://ho9036.github.io/return-by-google.html&"+
+            "response_type=token&"+
+            "scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
     }
 </script>
 </body>
